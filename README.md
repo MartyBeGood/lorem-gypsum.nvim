@@ -89,13 +89,9 @@ vim.cmd("colorscheme koda")
 ```
 
 ## Configuration
-
 > [!IMPORTANT]
-> Set the configuration **BEFORE** calling `vim.cmd("colorscheme koda")`.
+> Configure setup **BEFORE** calling `vim.cmd("colorscheme koda")`.
 
-<details>
-  <summary>Default options</summary>
-  
 ```lua
 require("koda").setup({
     transparent = false, -- enable for transparent backgrounds
@@ -118,70 +114,32 @@ require("koda").setup({
        constants = {}, -- includes numbers, booleans
     },
 
-    -- Override colors
-    -- These will be merged into the active palette (Dark or Light)
-    -- Example default palette for dark background:
+    -- Override colors for the active variant
+    -- The color key names (e.g., 'func') must match the built-in ones 
     colors = {
-        bg         = "#101010",
-        fg         = "#b0b0b0",
-        dim        = "#000000",
-        line       = "#272727",
-        keyword    = "#777777",
-        type       = "#777777",
-        operator   = "#777777",
-        comment    = "#50585d",
-        border     = "#ffffff",
-        emphasis   = "#ffffff",
-        func       = "#ffffff",
-        string     = "#ffffff",
-        char       = "#ffffff",
-        special    = "#ffffff",
-        const      = "#d9ba73",
-        highlight  = "#458ee6",
-        info       = "#8ebeec",
-        success    = "#86cd82",
-        warning    = "#d9ba73",
-        danger     = "#ff7676",
-        green      = "#14ba19",
-        orange     = "#ff5733",
-        red        = "#701516",
-        pink       = "#f2a4db",
-        cyan       = "#5abfb5",
+      -- func = "#4078F2", -- changes the color of functions
+      -- keyword = "#A627A4", -- changes the color of keywords
+      -- char = "#f2a4db", -- make characters pop out more by adding a different color
+      -- 
+      -- more can be found in: lua/koda/palette/
     },
 
     -- You can modify or extend highlight groups using the `on_highlights` configuration option
     -- Any changes made take effect when highlights are applied
-    on_highlights = function(hl, c) end,
-
+    on_highlights = function(hl, c)
+      -- hl.LineNr = { fg = c.info } -- change a specific highlight to use a different palette color
+      -- hl.Comment = { fg = c.emphasis, italic = true } -- modify a syntax group (add bold, italic, etc)
+      -- hl.RainbowDelimiterRed = { fg = "#fb2b2b" } -- add a custom highlight group for another plugin
+    end,
 })
 
+vim.cmd("colorscheme koda") -- will dynamically switch between `light` and `dark` variants based on `vim.o.background`
+-- vim.cmd("colorscheme koda-dark")
+-- vim.cmd("colorscheme koda-light")
+-- vim.cmd("colorscheme koda-moss")
+-- vim.cmd("colorscheme koda-glade")
+
 ````
-
-</details>
-
-<details>
-  <summary>Example Overriding Colors & Highlights</summary>
-
-```lua
--- Override specific palette colors or any highlights to your liking
--- Note: The palette key names (e.g., 'func') must match those found
--- in Koda's internal configuration (see above)
-require("koda").setup({
-  colors = {
-    func = "#4078F2", -- changes the color of functions
-    keyword = "#A627A4", -- changes the color of keywords
-    char = "#f2a4db", -- make characters pop out more by adding a different color
-  },
-
-  on_highlights = function(hl, c)
-    hl.LineNr = { fg = c.info } -- change a specific highlight to use a different palette color
-    hl.Comment = { fg = c.emphasis, italic = true } -- modify a syntax group (add bold, italic, etc)
-    hl.RainbowDelimiterRed = { fg = "#fb2b2b" } -- add a custom highlight group for another plugin
-  end,
-})
-````
-
-</details>
 
 ## API
 
