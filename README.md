@@ -24,7 +24,7 @@
 <img src="https://github.com/user-attachments/assets/3d129c05-5deb-40a8-bda2-9e15ae929cf6" />
 </details>
 
-
+<!--
 ## Features
 
 - **Minimalist design**: easy on the eyes while providing a clear semantic distinction.
@@ -61,10 +61,11 @@
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 
 </details>
+-->
 
 ## Installation
 
-[lazy.nvim:](https://github.com/folke/lazy.nvim)
+Using [lazy.nvim:](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
@@ -78,7 +79,7 @@
 }
 ```
 
-[vim.pack:](https://neovim.io/doc/user/pack.html#vim.pack)
+Using [vim.pack:](https://neovim.io/doc/user/pack.html#vim.pack)
 
 ```lua
 vim.pack.add({
@@ -88,7 +89,23 @@ vim.pack.add({
 vim.cmd("colorscheme koda")
 ```
 
-## Configuration
+## Usage
+
+> By default, `koda` will automatically switch between dark and light variants based on your `vim.o.background` setting.
+
+```lua
+vimd.cmd("colorscheme koda") -- auto-switches based on background
+```
+
+```vim
+" Explicitly set a variant: 
+colorscheme koda-dark
+colorscheme koda-light
+colorscheme koda-moss
+colorscheme koda-glade
+```
+
+## Default Configuration
 > [!IMPORTANT]
 > Configure setup **BEFORE** calling `vim.cmd("colorscheme koda")`.
 
@@ -97,11 +114,10 @@ require("koda").setup({
     transparent = false, -- enable for transparent backgrounds
 
     -- Automatically enable highlights only for plugins installed by your plugin manager
-    -- Currently supports `lazy.nvim`, `mini.deps` and `vim.pack`
-    -- Disable this to load ALL available plugin highlights
-    auto = true,
+    -- Currently only supports `lazy.nvim`, `mini.deps` and `vim.pack`
+    auto = true,  -- disable to load ALL available plugin highlights
 
-    cache = true, -- cache for better performance
+    cache = true, -- caches the theme for better performance
 
     -- Style to be applied to different syntax groups
     -- Common use case would be to set either `italic = true` or `bold = true` for a desired group
@@ -115,13 +131,10 @@ require("koda").setup({
     },
 
     -- Override colors for the active variant
-    -- The color key names (e.g., 'func') must match the built-in ones 
+    -- Available keys (e.g., 'func') can be found in lua/koda/palette/
     colors = {
-      -- func = "#4078F2", -- changes the color of functions
-      -- keyword = "#A627A4", -- changes the color of keywords
-      -- char = "#f2a4db", -- make characters pop out more by adding a different color
-      -- 
-      -- more can be found in: lua/koda/palette/
+      -- func = "#4078F2",
+      -- keyword = "#A627A4",
     },
 
     -- You can modify or extend highlight groups using the `on_highlights` configuration option
@@ -133,12 +146,6 @@ require("koda").setup({
     end,
 })
 
-vim.cmd("colorscheme koda") -- will dynamically switch between `light` and `dark` variants based on `vim.o.background`
--- vim.cmd("colorscheme koda-dark")
--- vim.cmd("colorscheme koda-light")
--- vim.cmd("colorscheme koda-moss")
--- vim.cmd("colorscheme koda-glade")
-
 ````
 
 ## API
@@ -147,10 +154,41 @@ Koda exposes a few utility functions to allow users to integrate the theme with 
 
 ```lua
 local koda = require("koda")
-local colors = koda.get_palette() -- returns the active palette (dark or light) with any of your user overrides applied
+local colors = koda.get_palette("dark") -- returns the colors for the given theme with user-overrides applied
 
 some_plugin.error = koda.blend(colors.danger, colors.bg, 0.3) -- blends two colors together. Useful for creating custom shades that match the theme
 ```
+
+You can also manually clear Koda's cache and reload the highlights by running:
+
+```vim
+:KodaFetch
+```
+
+ ## Supported Plugins
+
+- [blink.cmp](https://github.com/saghen/blink.cmp)
+- [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim)
+- [flash.nvim](https://github.com/folke/flash.nvim)
+- [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [mason.nvim](https://github.com/mason-org/mason.nvim)
+- [mini.pick](https://github.com/nvim-mini/mini.pick)
+- [mini.statusline](https://github.com/nvim-mini/mini.statusline)
+- [mini.icons](https://github.com/nvim-mini/mini.icons?tab=readme-ov-file)
+- [mini.jump2d](https://github.com/nvim-mini/mini.jump2d)
+- [modes.nvim](https://github.com/mvllow/modes.nvim)
+- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- [oil.nvim](https://github.com/stevearc/oil.nvim)
+- [rainbow-delimiters.nvim](https://github.com/HiPhish/rainbow-delimiters.nvim)
+- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+- [snacks.dashboard](https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md)
+- [snacks.input](https://github.com/folke/snacks.nvim/blob/main/docs/input.md)
+- [snacks.notifier](https://github.com/folke/snacks.nvim/blob/main/docs/notifier.md)
+- [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [trouble.nvim](https://github.com/folke/trouble.nvim)
 
 ## Language support
 
