@@ -1,4 +1,5 @@
-local utils = require("koda.utils")
+local Utils = require("koda.utils")
+local Config = require("koda.config")
 
 local M = {}
 
@@ -102,6 +103,7 @@ function M.setup(colors, opts, theme)
   local config = {
     colors = colors,
     plugins = names,
+    version = Config._version,
     opts = {
       styles = opts.styles,
       colors = opts.colors,
@@ -122,9 +124,9 @@ function M.setup(colors, opts, theme)
         hl[k] = v
       end
     end
-    utils.unpack(hl)
+    Utils.unpack(hl)
     if opts.cache then
-      utils.cache.write(cache_key, { groups = hl, config = config })
+      Utils.cache.write(cache_key, { groups = hl, config = config })
     end
   end
   opts.on_highlights(hl, colors)
