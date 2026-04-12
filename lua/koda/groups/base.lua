@@ -36,7 +36,7 @@ function M.get_hl(c, opts)
     IncSearch         = { link = "CurSearch" },
     Substitute        = { link = "DiffAdd" },
     MatchParen        = { fg = c.special, bold = true },
-    NonText           = { fg = c.line },
+    NonText           = { fg = c.dim },
     EndOfBuffer       = { fg = c.line },
     Question          = { fg = c.const },
     MoreMsg           = { link = "Question" },

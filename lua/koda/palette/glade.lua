@@ -3,7 +3,7 @@
 local palette = {
   bg         = "#f7f7f7",
   fg         = "#000000",
-  dim        = "#e7e7e7",
+  dim        = "#bfd9d9",
   line       = "#E2EEEE",
   keyword    = "#000000",
   type       = "#708b8d",
