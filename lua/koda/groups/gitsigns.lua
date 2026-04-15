@@ -9,6 +9,7 @@ function M.get_hl(c)
     GitSignsDelete        = { fg = c.danger },
     GitSignsDeleteInline  = { link = "DiffChange" },
     GitSignsAddInline     = { link = "DiffChange" },
+    GitSignsChangeInLine  = { link = "DiffChange" }
   }
 end
 
