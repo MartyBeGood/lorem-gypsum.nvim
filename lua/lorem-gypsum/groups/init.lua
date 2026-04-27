@@ -1,5 +1,4 @@
 local Utils = require("lorem-gypsum.utils")
-local Config = require("lorem-gypsum.config")
 
 local M = {}
 
@@ -94,39 +93,13 @@ function M.setup(colors, opts, theme)
     end
   end
 
-  -- Sort (in-place) group names for consistent cache keys
-  local names = vim.tbl_keys(groups)
-  table.sort(names)
-
-  local config = {
-    colors = colors,
-    plugins = names,
-    version = Config._version,
-    opts = {
-      styles = opts.styles,
-      colors = opts.colors,
-      transparent = opts.transparent,
-    },
-  }
-
-  -- Check if we can use cached highlights
-  local cache_key = theme or vim.o.background
-  local cache = opts.cache and Utils.cache.read(cache_key)
-  local hl = cache and vim.deep_equal(config, cache.config) and cache.groups
-
-  -- Generate highlights if cache miss
-  if not hl then
-    hl = {}
-    for group in pairs(groups) do
-      for k, v in pairs(M.get_highlights(group, colors, opts)) do
-        hl[k] = v
-      end
-    end
-    Utils.unpack(hl)
-    if opts.cache then
-      Utils.cache.write(cache_key, { groups = hl, config = config })
+  local hl = {}
+  for group in pairs(groups) do
+    for k, v in pairs(M.get_highlights(group, colors, opts)) do
+      hl[k] = v
     end
   end
+  Utils.unpack(hl)
   opts.on_highlights(hl, colors)
 
   return hl, groups -- return groups table for testing purposes

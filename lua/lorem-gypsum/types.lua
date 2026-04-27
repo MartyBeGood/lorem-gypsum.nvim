@@ -9,11 +9,6 @@
 ---@alias lorem-gypsum.HighlightsFn fun(colors: lorem-gypsum.Palette, opts: lorem-gypsum.Config): lorem-gypsum.Highlights
 --- Takes color palette and config, returns highlight definitions
 
----@class lorem-gypsum.Cache
---- Cached colorscheme data stored in stdpath("cache")
----@field groups lorem-gypsum.Highlights Compiled highlight groups
----@field config table The configuration fingerprint used to generate cache (for invalidation)
-
 ---@class lorem-gypsum.Palette
 --- Color palette with semantic color names
 ---@field bg string?
@@ -46,7 +41,6 @@
 --- User configuration options for the theme
 ---@field transparent? boolean
 ---@field theme? table<"dark"|"light", string>
----@field cache? boolean
 ---@field styles? table<string, vim.api.keyset.highlight>
 ---@field colors? table<string, string>
 ---@field auto? boolean

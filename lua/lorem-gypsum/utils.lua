@@ -1,56 +1,5 @@
 local M = {}
 
-M.cache = {}
-
---- Reads a file from disk
----@param fname string
----@return string|nil, string|nil
-function M.read(fname)
-  local file, err = io.open(fname, "r")
-  if not file then
-    return nil, err
-  end
-  local data = file:read("*a")
-  file:close()
-  return data
-end
-
---- Writes to the given file, erasing all previous data.
----@param fname string
----@param data string
-function M.write(fname, data)
-  vim.fn.mkdir(vim.fs.dirname(fname), "p")
-  local file = assert(io.open(fname, "w+"))
-  file:write(data)
-  file:close()
-end
-
---- Returns the path to the cache file for a given key
----@param key string
----@return string
-function M.cache.file(key)
-  return vim.fs.joinpath(vim.fn.stdpath("cache"), "lorem-gypsum-" .. key .. ".json")
-end
-
---- Safely read and decode the cached file from disk
----@param key string
----@return lorem-gypsum.Cache|nil
-function M.cache.read(key)
-  local data = M.read(M.cache.file(key))
-  if not data then
-    return nil
-  end
-  local is_ok, ret = pcall(vim.json.decode, data, { luanil = { object = true, array = true } })
-  return is_ok and ret or nil
-end
-
---- Encodes and writes data to the cached directory
----@param key string
----@param data lorem-gypsum.Cache
-function M.cache.write(key, data)
-  pcall(M.write, M.cache.file(key), vim.json.encode(data))
-end
-
 --- Unpacks the style table into main highlight groups
 ---@param groups lorem-gypsum.Highlights
 ---@return lorem-gypsum.Highlights
@@ -95,9 +44,7 @@ function M.blend(foreground, background, alpha)
   return string.format("#%02X%02X%02X", blend_channel(1), blend_channel(2), blend_channel(3))
 end
 
--- Clears cache and reloads the current colorscheme
 function M.reload()
-  M.cache.clear()
   for name, _ in pairs(package.loaded) do
     if name:match("^lorem-gypsum") and name ~= "lorem-gypsum.config" then
       package.loaded[name] = nil

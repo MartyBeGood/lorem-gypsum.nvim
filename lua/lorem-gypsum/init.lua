@@ -3,17 +3,6 @@ local M = {}
 ---@param opts lorem-gypsum.Config|nil
 function M.setup(opts)
   require("lorem-gypsum.config").setup(opts)
-
-  local group = vim.api.nvim_create_augroup("lorem-gypsum", { clear = true })
-  vim.api.nvim_create_autocmd("OptionSet", {
-    group = group,
-    pattern = "background",
-    callback = function()
-      if vim.g.colors_name and vim.g.colors_name:match("^lorem%-gypsum") then
-        require("lorem-gypsum").load()
-      end
-    end,
-  })
 end
 
 --- Get the current palette with any user overrides applied
@@ -42,6 +31,7 @@ end
 
 --- Main function to apply the theme
 function M.load(theme)
+  local explicit = theme ~= nil
   theme = require("lorem-gypsum.utils").resolve(theme)
   local config = require("lorem-gypsum.config")
   local groups = require("lorem-gypsum.groups") -- points to lua/lorem-gypsum/groups/init.lua
@@ -52,7 +42,9 @@ function M.load(theme)
   if vim.fn.exists("syntax_on") == 1 then
     vim.cmd("syntax reset")
   end
-  vim.g.colors_name = theme and "lorem-gypsum-" .. theme or "lorem-gypsum"
+
+  local theme_variant = explicit and "-" .. theme or ""
+  vim.g.colors_name = "lorem-gypsum" .. theme_variant
 
   -- Unpack and resolve custom styles
   local hl_groups = groups.setup(palette, config.options, theme)

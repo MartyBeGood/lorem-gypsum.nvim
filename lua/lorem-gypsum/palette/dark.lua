@@ -2,12 +2,12 @@
 ---@class lorem-gypsum.Palette
 local palette = {
   bg         = "#282828",
-  fg         = "#b0b0b0",
+  fg         = "#dddddd",
   dim        = "#515151",
   line       = "#222222",
   keyword    = "#C586C0",
   type       = "#b0b0b0",
-  operator   = "#777777",
+  operator   = "#dddddd",
   comment    = "#ce9178",
   border     = "#181818",
   emphasis   = "#ffffff",

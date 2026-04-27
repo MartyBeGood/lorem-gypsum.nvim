@@ -10,7 +10,7 @@ M.defaults = {
     light = "light",
   },
   styles = {
-    functions = { bold = true },
+    functions = {},
     keywords = {},
     comments = {},
     strings = {},
@@ -18,7 +18,6 @@ M.defaults = {
   },
   colors = {},
   auto = true,
-  cache = true,
 
   on_highlights = function(highlights, colors) end,
 }
