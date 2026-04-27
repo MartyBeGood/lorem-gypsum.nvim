@@ -51,14 +51,6 @@ function M.cache.write(key, data)
   pcall(M.write, M.cache.file(key), vim.json.encode(data))
 end
 
---- Deletes Koda's cache files from the system
-function M.cache.clear()
-  local files = vim.fn.glob(vim.fn.stdpath("cache") .. "/lorem-gypsum-*.json", false, true)
-  for _, file in ipairs(files) do
-    vim.uv.fs_unlink(file)
-  end
-end
-
 --- Unpacks the style table into main highlight groups
 ---@param groups lorem-gypsum.Highlights
 ---@return lorem-gypsum.Highlights

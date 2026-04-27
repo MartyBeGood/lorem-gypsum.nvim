@@ -4,10 +4,16 @@ local M = {}
 function M.setup(opts)
   require("lorem-gypsum.config").setup(opts)
 
-  -- Reload the colorscheme with :KodaFetch
-  vim.api.nvim_create_user_command("KodaFetch", function()
-    require("lorem-gypsum.utils").reload()
-  end, {})
+  local group = vim.api.nvim_create_augroup("lorem-gypsum", { clear = true })
+  vim.api.nvim_create_autocmd("OptionSet", {
+    group = group,
+    pattern = "background",
+    callback = function()
+      if vim.g.colors_name and vim.g.colors_name:match("^lorem%-gypsum") then
+        require("lorem-gypsum").load()
+      end
+    end,
+  })
 end
 
 --- Get the current palette with any user overrides applied
