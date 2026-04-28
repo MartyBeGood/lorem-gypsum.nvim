@@ -38,7 +38,6 @@ function M.get_hl(c, opts)
     Debug           = { fg = c.const },
     Underlined      = { underline = true },
     Error           = { fg = c.danger },
-    -- Todo            = { fg = c.fg, bg = c.bg , bold = true }, -- let Neovims handle this
     Added           = { fg = c.success },
     Changed         = { fg = c.warning },
     Removed         = { fg = c.danger },

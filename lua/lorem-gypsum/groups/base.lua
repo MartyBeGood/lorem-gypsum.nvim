@@ -30,6 +30,7 @@ function M.get_hl(c, opts)
     PmenuSel          = { fg = c.fg, bg = c.line, bold = true },
     PmenuThumb        = { bg = c.fg },
     PmenuMatch        = { fg = c.const, bold = true },
+    PmenuBorder       = { link = "FloatBorder" },
     Visual            = { bg = c.line },
     Search            = { link = "Visual" },
     CurSearch         = { link = "DiffChange" },

@@ -4,7 +4,8 @@ local M = {}
 function M.get_hl(c, opts)
   -- stylua: ignore
   return {
-    FzfLuaBackdrop = { bg = opts.transparent and "none" or c.bg },
+    FzfLuaBackdrop = { bg = opts.transparent and "none" or c.line },
+    FzfLuaBorder = { link = "FloatBorder" },
   }
 end
 

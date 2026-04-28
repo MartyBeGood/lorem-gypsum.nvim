@@ -1,15 +1,15 @@
 -- stylua: ignore
 ---@class lorem-gypsum.Palette
 local palette = {
-  bg         = "#faf9f5",
+  bg         = "#fafafa",
   fg         = "#101010",
   dim        = "#cccccc",
   line       = "#ebebeb",
+  border     = "#aaaaaa",
   keyword    = "#3d3d3d",
   type       = "#101010",
   operator   = "#3d3d3d",
   comment    = "#a31515",
-  border     = "#d0d0d0",
   emphasis   = "#000000",
   func       = "#005FB8",
   string     = "#407f00",

@@ -10,7 +10,7 @@ function M.get_hl(c)
     DiagnosticInfo                           = { fg = c.fg },
     DiagnosticOK                             = { fg = c.success },
     DiagnosticWarn                           = { fg = c.warning },
-    LspInlayHint                             = { fg = c.comment },
+    LspInlayHint                             = { fg = c.dim, italic = true },
     ["@lsp.type.comment"]                    = {}, -- use treesitter styles
     ["@lsp.type.lifetime"]                   = { fg = c.const },
     ["@lsp.type.modifier"]                   = { link = "Keyword" },
