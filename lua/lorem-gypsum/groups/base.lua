@@ -56,6 +56,41 @@ function M.get_hl(c, opts)
     DiffChange        = { fg = c.warning, bg = Utils.blend(c.warning, c.bg, 0.2) },
     DiffDelete        = { fg = c.danger, bg = Utils.blend(c.danger, c.bg, 0.2) },
     DiffText          = { fg = c.warning, bg = Utils.blend(c.warning, c.bg, 0.4) },
+
+    -- TODO: Check how these look
+    TodoFgTODO        = { fg = c.const },
+    TodoBgTODO        = { fg = c.const, bg = Utils.blend(c.const, c.bg, 0.1), bold = true },
+    TodoSignTODO      = { fg = c.const, bold = true },
+
+    -- FIX: Check how these look
+    TodoFgFIX         = { fg = c.danger },
+    TodoBgFIX         = { fg = c.danger, bg = Utils.blend(c.danger, c.bg, 0.2), bold = true },
+    TodoSignFIX       = { fg = c.danger, bold = true },
+
+    -- PERF: Check how these look
+    TodoFgPERF        = { link = "TodoFgTODO" },
+    TodoBgPERF        = { link = "TodoBgTODO" },
+    TodoSignPERF      = { link = "TodoSignTODO" },
+
+    -- WARN: Check how these look
+    TodoFgWARN        = { fg = c.warning },
+    TodoBgWARN        = { fg = c.warning, bg = Utils.blend(c.warning, c.bg, 0.2), bold = true },
+    TodoSignWARN      = { fg = c.warning },
+
+    -- HACK: Check how these look
+    TodoFgHACK        = { fg = c.warning },
+    TodoBgHACK        = { fg = c.warning, bg = Utils.blend(c.warning, c.bg, 0.2), bold = true },
+    TodoSignHACK      = { fg = c.warning, bold = true },
+
+    -- TEST: Check how these look
+    TodoFgTEST        = { link = "TodoFgTODO" },
+    TodoBgTEST        = { link = "TodoBgTODO" },
+    TodoSignTEST      = { link = "TodoSignTODO" },
+
+    -- NOTE: Check how these look
+    TodoFgNOTE        = { fg = c.highlight },
+    TodoBgNOTE        = { fg = c.highlight, bg = Utils.blend(c.highlight, c.bg, 0.2), bold = true },
+    TodoSignNOTE      = { fg = c.highlight },
   }
 end
 
