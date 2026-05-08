@@ -91,6 +91,8 @@ function M.get_hl(c, opts)
     TodoFgNOTE        = { fg = c.highlight },
     TodoBgNOTE        = { fg = c.highlight, bg = Utils.blend(c.highlight, c.bg, 0.2), bold = true },
     TodoSignNOTE      = { fg = c.highlight },
+
+    Folded            = { bg = c.dim }
   }
 end
 
