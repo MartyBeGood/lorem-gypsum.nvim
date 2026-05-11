@@ -4,13 +4,13 @@ local M = {}
 function M.get_hl(c)
   -- stylua: ignore
   return {
-    NeoTreeGitModified   = { fg = c.warning },
-    NeoTreeGitAdded      = { fg = c.success },
-    NeoTreeGitDeleted    = { fg = c.danger, strikethrough = true },
-    NeoTreeGitStaged     = { fg = c.success },
+    NeoTreeGitModified   = { link = "GitModified" },
+    NeoTreeGitAdded      = { link = "GitAdded" },
+    NeoTreeGitDeleted    = { link = "GitDeleted" },
+    NeoTreeGitStaged     = { link = "GitStaged" },
     NeoTreeGitConflict   = { fg = c.red },
-    NeoTreeGitUntracked  = { fg = c.orange },
-    NeoTreeGitUnstaged   = { fg = c.orange },
+    NeoTreeGitUntracked  = { link = "GitUntracked" },
+    NeoTreeGitUnstaged   = { link = "GitUnstaged" },
   }
 end
 

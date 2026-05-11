@@ -6,9 +6,9 @@ local Utils = require("lorem-gypsum.utils")
 function M.get_hl(c)
   -- stylua: ignore
   return {
-    GitSignsAdd           = { fg = c.success },
-    GitSignsChange        = { fg = c.warning },
-    GitSignsDelete        = { fg = c.danger },
+    GitSignsAdd           = { link = "GitAdded" },
+    GitSignsChange        = { link = "GitModified" },
+    GitSignsDelete        = { link = "GitDeleted" },
     GitSignsDeleteInline  = { link = "DiffChange" },
     GitSignsAddInline     = { link = "DiffChange" },
     GitSignsChangeInLine  = { link = "DiffChange" },

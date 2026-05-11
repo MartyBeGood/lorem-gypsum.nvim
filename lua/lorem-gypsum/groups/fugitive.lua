@@ -6,12 +6,12 @@ local Utils = require("lorem-gypsum.utils")
 function M.get_hl(c)
   -- stylua: ignore
   return {
-    fugitiveStagedHeading      = { fg = c.success },
-    fugitiveStagedModifier     = { fg = c.success },
-    fugitiveUnstagedHeading    = { fg = c.warning },
-    fugitiveUnstagedModifier   = { fg = c.warning },
-    fugitiveUntrackedHeading   = { fg = c.info },
-    fugitiveUntrackedModifier  = { fg = c.info },
+    fugitiveStagedHeading      = { link = "GitStaged" },
+    fugitiveStagedModifier     = { link = "GitStaged" },
+    fugitiveUnstagedHeading    = { link = "GitUnstaged" },
+    fugitiveUnstagedModifier   = { link = "GitUnstaged" },
+    fugitiveUntrackedHeading   = { link = "GitUntracked" },
+    fugitiveUntrackedModifier  = { link = "GitUntracked" },
     fugitiveCount              = { link = "Normal" }
   }
 end

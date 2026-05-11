@@ -92,7 +92,15 @@ function M.get_hl(c, opts)
     TodoBgNOTE        = { fg = c.highlight, bg = Utils.blend(c.highlight, c.bg, 0.2), bold = true },
     TodoSignNOTE      = { fg = c.highlight },
 
-    Folded            = { bg = c.dim }
+    Folded            = { bg = c.dim },
+
+    -- Use these foreground colors for git changes. Use the Diff* groups for actual code changes.
+    GitAdded          = { fg = c.success },
+    GitModified       = { fg = c.warning },
+    GitDeleted        = { fg = c.danger },
+    GitStaged         = { fg = c.success },
+    GitUnstaged       = { fg = c.warning },
+    GitUntracked      = { fg = c.info },
   }
 end
 
