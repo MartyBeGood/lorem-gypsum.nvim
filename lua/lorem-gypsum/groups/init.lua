@@ -37,65 +37,54 @@ end
 ---@return table
 function M.setup(colors, opts, theme)
   -- Always load base groups
-  local groups = {
-    base = true,
-    syntax = true,
-    treesitter = true,
-    lsp = true,
-  }
+  local groups = { "base", "syntax", "treesitter", "lsp" }
+
+  local function should_add_mini(names)
+    if vim.list_contains(groups, "mini") then
+      return false
+    end
+    for _, name in ipairs(names) do
+      if name:match("^mini%.") then
+        return true
+      end
+    end
+    return false
+  end
 
   -- Load highlights only for plugins managed by plugin managers
   -- Currently only supports lazy.nvim and vim.pack
   -- Setting `opts.auto=false` during setup will load all highlights
   if not opts.auto then
     for _, group in pairs(M.plugins) do
-      groups[group] = true
+      table.insert(groups, group)
     end
   else
+    local plugin_names = {}
     if package.loaded.lazy then -- try lazy.nvim
-      local lazy_plugins = require("lazy.core.config").plugins
-      for plugin, group in pairs(M.plugins) do
-        if lazy_plugins[plugin] then
-          groups[group] = true
-        end
-      end
-      if not groups.mini then -- check standalone mini modules
-        for plugin_name, _ in pairs(lazy_plugins) do
-          if plugin_name:match("^mini%.") then
-            groups.mini = true
-            break
-          end
-        end
-      end
-    end
-    if vim.pack then -- try vim.pack
+      plugin_names = vim.tbl_keys(require("lazy.core.config").plugins)
+    elseif vim.pack then -- try vim.pack
       local ok, packdata = pcall(vim.pack.get, nil, { info = false })
       if ok and packdata then
-        for _, plugin in ipairs(packdata) do
-          local group = M.plugins[plugin.spec.name]
-          if group then
-            groups[group] = true
-          end
-          if not groups.mini and plugin.spec.name:match("^mini%.") then
-            groups.mini = true
-          end
-        end
+        plugin_names = vim.tbl_map(function(p) return p.spec.name end, packdata)
+      end
+    elseif _G.MiniDeps then -- try mini.deps
+      plugin_names = vim.tbl_map(function(p) return p.name end, _G.MiniDeps.get_session())
+    end
+
+    for _, plugin_name in ipairs(plugin_names) do
+      local group = M.plugins[plugin_name]
+      if group then
+        table.insert(groups, group)
       end
     end
-    if _G.MiniDeps then -- try mini.deps
-      for _, plugin in ipairs(_G.MiniDeps.get_session()) do
-        if M.plugins[plugin.name] then
-          groups[M.plugins[plugin.name]] = true
-        end
-        if not groups.mini and plugin.name:match("^mini%.") then
-          groups.mini = true
-        end
-      end
+
+    if should_add_mini(plugin_names) then
+      table.insert(groups, "mini")
     end
   end
 
   local hl = {}
-  for group in pairs(groups) do
+  for _, group in ipairs(groups) do
     for k, v in pairs(M.get_highlights(group, colors, opts)) do
       hl[k] = v
     end
