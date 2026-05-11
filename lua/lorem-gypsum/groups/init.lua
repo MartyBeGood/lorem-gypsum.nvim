@@ -14,6 +14,7 @@ M.plugins = {
   ["flash.nvim"]               = "flash",
   ["fzf-lua"]                  = "fzf",
   ["gitsigns.nvim"]            = "gitsigns",
+  ["vim-fugitive"]             = "fugitive",
   ["render-markdown.nvim"]     = "render-markdown",
   ["snacks.nvim"]              = "snacks",
   ["telescope.nvim"]           = "telescope",
