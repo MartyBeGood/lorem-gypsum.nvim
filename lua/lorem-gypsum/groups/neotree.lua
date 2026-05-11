@@ -4,6 +4,7 @@ local M = {}
 function M.get_hl(c)
   -- stylua: ignore
   return {
+    NeoTreeDirectoryIcon = { fg = c.warning },
     NeoTreeGitModified   = { link = "GitModified" },
     NeoTreeGitAdded      = { link = "GitAdded" },
     NeoTreeGitDeleted    = { link = "GitDeleted" },
