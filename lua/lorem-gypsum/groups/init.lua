@@ -11,6 +11,7 @@ M.plugins = {
   ["modes.nvim"]               = "modes",
   ["oil.nvim"]                 = "oil",
   ["dashboard-nvim"]           = "dashboard",
+  ["indent-blankline.nvim"]    = "indentblankline",
   ["flash.nvim"]               = "flash",
   ["fzf-lua"]                  = "fzf",
   ["gitsigns.nvim"]            = "gitsigns",
@@ -65,10 +66,14 @@ function M.setup(colors, opts, theme)
     elseif vim.pack then -- try vim.pack
       local ok, packdata = pcall(vim.pack.get, nil, { info = false })
       if ok and packdata then
-        plugin_names = vim.tbl_map(function(p) return p.spec.name end, packdata)
+        plugin_names = vim.tbl_map(function(p)
+          return p.spec.name
+        end, packdata)
       end
     elseif _G.MiniDeps then -- try mini.deps
-      plugin_names = vim.tbl_map(function(p) return p.name end, _G.MiniDeps.get_session())
+      plugin_names = vim.tbl_map(function(p)
+        return p.name
+      end, _G.MiniDeps.get_session())
     end
 
     for _, plugin_name in ipairs(plugin_names) do
