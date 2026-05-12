@@ -15,6 +15,7 @@
 ---@field fg string?
 ---@field dim string?
 ---@field line string?
+---@field popup string?
 ---@field keyword string?
 ---@field type string?
 ---@field operator string?

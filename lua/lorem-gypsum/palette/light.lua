@@ -7,6 +7,7 @@ local palette = {
   dim        = "#cccccc",
   line       = "#ebebeb",
   border     = "#d0d0d0",
+  popup      = "#dcdde1",
   emphasis   = "#000000",
   selection  = "#add6ff",
   highlight  = "#0253be",

@@ -5,11 +5,12 @@ local M = {}
 --- Get base highlight groups, see `:h highlight-groups`
 ---@type lorem-gypsum.HighlightsFn
 function M.get_hl(c, opts)
+  local dimmer = Utils.blend(c.dim, c.bg, 0.5)
   -- stylua: ignore
   return {
     Normal            = { fg = c.fg, bg = opts.transparent and "none" or c.bg },
-    NormalFloat       = { link = "Normal" },
-    FloatBorder       = { fg = c.border, bg = opts.transparent and "none" or c.bg, },
+    NormalFloat       = { fg = c.fg, bg = opts.transparent and "none" or c.popup },
+    FloatBorder       = { fg = c.border, bg = opts.transparent and "none" or c.popup },
     Cursor            = { fg = c.fg, bg = c.fg },
     TermCursor        = { link = "Cursor" },
     lCursor           = { link = "Cursor" },
@@ -26,11 +27,12 @@ function M.get_hl(c, opts)
     WinBar            = { link = "Normal" },
     WinBarNC          = { link = "Normal" },
     WinSeparator      = { fg = c.border },
-    Pmenu             = { bg = opts.transparent and "none" or c.bg },
-    PmenuSel          = { fg = c.fg, bg = c.line, bold = true },
+    Pmenu             = { fg = c.fg, bg = opts.transparent and "none" or c.popup },
+    PmenuSel          = { fg = c.fg, bg = Utils.blend(c.fg, c.popup, 0.12) },
     PmenuThumb        = { bg = c.fg },
     PmenuMatch        = { fg = c.const, bold = true },
     PmenuBorder       = { link = "FloatBorder" },
+    WildMenu          = { fg = c.fg, bg = Utils.blend(c.fg, c.popup, 0.12) },
     Visual            = { bg = c.selection },
     Search            = { bg = Utils.blend(c.selection, c.bg, 0.6) },
     LspReferenceText  = { bg = Utils.blend(c.dim, c.bg, 0.3) },
@@ -52,10 +54,10 @@ function M.get_hl(c, opts)
     SpecialKey        = { fg = c.comment },
     TabLineSel        = { fg = c.emphasis, bg = c.line },
     Title             = { fg = c.emphasis, bold = true },
-    DiffAdd           = { fg = c.success, bg = Utils.blend(c.success, c.bg, 0.2) },
-    DiffChange        = { fg = c.warning, bg = Utils.blend(c.warning, c.bg, 0.2) },
+    DiffAdd           = { bg = Utils.blend(c.success, c.bg, 0.2) },
+    DiffChange        = { bg = Utils.blend(c.highlight, c.bg, 0.2) },
     DiffDelete        = { fg = c.danger, bg = Utils.blend(c.danger, c.bg, 0.2) },
-    DiffText          = { fg = c.warning, bg = Utils.blend(c.warning, c.bg, 0.4) },
+    DiffText          = { bg = Utils.blend(c.highlight, c.bg, 0.4) },
 
     -- TODO: Check how these look
     TodoFgTODO        = { fg = c.const },
