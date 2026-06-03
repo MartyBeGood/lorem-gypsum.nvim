@@ -8,15 +8,15 @@ gui:
     optionsTextColor:
       - '#8ebeec'
     selectedLineBgColor:
-      - '#272727'
+      - '#222222'
     cherryPickedCommitBgColor:
-      - '#272727'
+      - '#222222'
     cherryPickedCommitFgColor:
       - '#f2a4db'
     unstagedChangesColor:
       - '#ff7676'
     defaultFgColor:
-      - '#b0b0b0'
+      - '#dddddd'
     searchingActiveBorderColor:
       - '#ff5733'
 

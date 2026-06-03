@@ -6,7 +6,7 @@ return {
   cursor_fg = "#ebebeb",
   cursor_border = "#6a6a6a",
 
-  selection_bg = "#ebebeb",
+  selection_bg = "#add6ff",
   selection_fg = "#101010",
 
   split = "#000000",
