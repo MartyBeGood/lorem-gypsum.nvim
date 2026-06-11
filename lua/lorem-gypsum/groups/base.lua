@@ -94,6 +94,8 @@ function M.get_hl(c, opts)
     TodoBgNOTE        = { fg = c.highlight, bg = Utils.blend(c.highlight, c.bg, 0.2), bold = true },
     TodoSignNOTE      = { fg = c.highlight },
 
+    AiVirtualText     = { fg = c.subtle, italic = true },
+
     Folded            = { bg = c.dim },
 
     -- Use these foreground colors for git changes. Use the Diff* groups for actual code changes.

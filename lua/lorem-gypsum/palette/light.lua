@@ -2,9 +2,10 @@
 ---@class lorem-gypsum.Palette
 local palette = {
   -- UI colors
-  bg         = "#faf9f5",
+  bg         = "#fafafa",
   fg         = "#101010",
-  dim        = "#cccccc",
+  dim        = "#c0c0c0",
+  subtle     = "#707070",
   line       = "#ebebeb",
   border     = "#d0d0d0",
   popup      = "#dcdde1",

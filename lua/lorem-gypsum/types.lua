@@ -14,6 +14,7 @@
 ---@field bg string?
 ---@field fg string?
 ---@field dim string?
+---@field subtle string?
 ---@field line string?
 ---@field popup string?
 ---@field keyword string?

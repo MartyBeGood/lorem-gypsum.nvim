@@ -5,6 +5,7 @@ local palette = {
   bg         = "#282828",
   fg         = "#dddddd",
   dim        = "#606060",
+  subtle     = "#909090",
   border     = "#444444",
   line       = "#222222",
   popup      = "#1a1a1a",
