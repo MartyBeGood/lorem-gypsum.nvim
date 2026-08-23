@@ -5,9 +5,9 @@ local Groups = require("lorem-gypsum.groups")
 describe("File integrity:", function()
   it("can require every file in lorem-gypsum/groups without syntax errors", function()
     local path = "lua/lorem-gypsum/groups"
-    local files = vim.split(vim.fn.glob(path .. "/*.lua"), "\n")
+    local files = vim.split(vim.fn.glob(path .. "/**/*.lua"), "\n")
     for _, file in ipairs(files) do
-      local name = vim.fn.fnamemodify(file, ":t:r")
+      local name = file:sub(#path + 2, -5):gsub("/", ".")
       if name ~= "init" then
         local ok, mod = pcall(require, "lorem-gypsum.groups." .. name)
 
@@ -37,6 +37,7 @@ describe("Plugin detection logic:", function()
     local _, loaded = Groups.setup(colors, opts)
 
     assert.is_true(loaded["base"])
+    assert.is_true(loaded["languages.cooklang"])
     assert.is_nil(loaded["gitsigns"])
   end)
 

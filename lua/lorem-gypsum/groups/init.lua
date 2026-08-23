@@ -39,7 +39,7 @@ end
 ---@return table
 function M.setup(colors, opts, theme)
   -- Always load base groups
-  local groups = { "base", "syntax", "treesitter", "lsp" }
+  local groups = { "base", "syntax", "treesitter", "lsp", "languages.cooklang" }
 
   local function should_add_mini(names)
     if vim.list_contains(groups, "mini") then
