@@ -7,7 +7,8 @@ function M.get_hl(c)
   -- stylua: ignore
   return {
     ["@punctuation.delimiter.cooklang"] = { fg = c.type },     -- @ ~ # markers
-    ["@string.special.symbol.cooklang"] = { fg = c.emphasis }, -- ingredient/cookware/timer names
+    ["@string.special.symbol.cooklang"] = { link = "Constant" }, -- ingredient/cookware/timer names
+    ["@lsp.type.variable.cook"] = { link = "Constant" },
     ["@punctuation.special.cooklang"]   = { fg = c.special },  -- % scaling operator
   }
 end
